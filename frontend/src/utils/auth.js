@@ -1,5 +1,5 @@
 //const BASE_URL = process.env.REACT_APP_BASE_URL
-const base_url = 'https://auth.nomoreparties.co'
+const base_url = 'http://api.mymesto.nomoredomains.club'
 
 function handleResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
