@@ -1,5 +1,5 @@
 //const AUTH = process.env.REACT_APP_AUTH_TOKEN
-const AUTH = 'ee63acbb-034f-45d3-b9ee-d63e3206b34a'
+//const AUTH = 'ee63acbb-034f-45d3-b9ee-d63e3206b34a'
 
 class Api {
   constructor(options) {
@@ -93,7 +93,7 @@ class Api {
 export const api = new Api({
   baseUrl: 'http://api.mymesto.nomoredomains.club',
   headers: {
-    authorization: `${AUTH}`,
+    //authorization: `${AUTH}`,
     'Content-Type': 'application/json',
   },
 })
