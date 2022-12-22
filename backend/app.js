@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
-const cors = require('./middlewares/cors');
+// const cors = require('./middlewares/cors');
 const routerAuth = require('./routes/auth');
 const router = require('./routes/index');
 const { notFoundError } = require('./utils/notFoundError');
@@ -19,7 +19,7 @@ const app = express();
 app.use(express.json());
 
 // CORS
-app.use(cors);
+// app.use(cors);
 
 // protection
 app.use(helmet());
