@@ -189,7 +189,7 @@ function App() {
     const token = localStorage.getItem('jwt')
     if (token) {
       auth
-        .checkToken(token)
+        .validateJWT(token)
         .then((res) => {
           if (res) {
             setCurrentEmail(res.data.email)
