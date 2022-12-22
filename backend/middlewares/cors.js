@@ -1,16 +1,16 @@
 const allowedCors = [
   'localhost:3000',
-  'myMesto.nomoredomains.club',
-  'api.mymesto.nomoredomains.club',
+  'http://mymesto.nomoredomains.club/',
+  'http://api.mymesto.nomoredomains.club/',
 ];
 
-const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,POST,PATCH,DELETE';
+const DEFAULT_ALLOWED_METHODS = 'GET, HEAD, POST, PATCH, DELETE';
 
 module.exports = (req, res, next) => {
   const { origin } = req.headers;
   const { method } = req;
   const requestHeaders = req.headers['access-control-request-headers'];
-  res.header('Access-Control-Allow-Credentials', true);
+  // res.header('Access-Control-Allow-Credentials', true);
 
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
