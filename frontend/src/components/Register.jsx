@@ -55,7 +55,7 @@ export function Register({ handleRegister }) {
           />
           <button className="auth__submit-btn">Зарегистрироваться</button>
         </form>
-        <Link to="/sign-in" className="auth__link">
+        <Link to="/signin" className="auth__link">
           Уже зарегистрированы? Войти
         </Link>
       </div>
