@@ -34,7 +34,8 @@ function App() {
   const history = useNavigate()
 
   React.useEffect(() => {
-    if (loggedIn) {
+    const token = localStorage.getItem('jwt')
+    if (token) {
       handleToken()
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([data, card]) => {
@@ -186,10 +187,10 @@ function App() {
   }
 
   function handleToken() {
-    const token = localStorage.getItem('jwt')
-    if (token) {
+    if (localStorage.getItem('jwt')) {
+      const jwt = localStorage.getItem('jwt')
       auth
-        .validateJWT(token)
+        .validateJWT(jwt)
         .then((res) => {
           if (res) {
             setCurrentEmail(res.data.email)
@@ -236,7 +237,7 @@ function App() {
               <Route
                 path="*"
                 element={
-                  loggedIn ? <Navigate to="/" /> : <Navigate to="/signin" />
+                  loggedIn ? <Navigate to="/" /> : <Navigate to="/signup" />
                 }
               />
             </Routes>
