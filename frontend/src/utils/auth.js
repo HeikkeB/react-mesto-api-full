@@ -8,12 +8,12 @@ function handleResponse(res) {
 export const register = (email, password) => {
   return fetch(`${base_url}/signup`, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': 'true',
-        credentials: 'include',
     },
     body: JSON.stringify({ email, password }),
   }).then(handleResponse)
@@ -22,12 +22,12 @@ export const register = (email, password) => {
 export const authorize = (email, password) => {
   return fetch(`${base_url}/signin`, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': 'true',
-        credentials: 'include',
     },
     body: JSON.stringify({ email, password }),
   }).then(handleResponse)
@@ -35,12 +35,12 @@ export const authorize = (email, password) => {
 
 export const validateJWT = (token) => {
   return fetch(`${base_url}/users/me`, {
+    credentials: 'include',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': 'true',
-        credentials: 'include',
       Authorization: `Bearer ${token}`,
     },
   }).then(handleResponse)

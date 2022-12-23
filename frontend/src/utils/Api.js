@@ -92,6 +92,7 @@ class Api {
 
 export const api = new Api({
   baseUrl: 'http://api.mymesto.nomoredomains.club',
+  credentials: 'include',
   headers: {
     //'authorization': `Bearer ${token}`,
     'Content-Type': 'application/json',

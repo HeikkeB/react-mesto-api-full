@@ -19,7 +19,11 @@ const app = express();
 app.use(express.json());
 
 // CORS
-app.use(cors());
+app.use(cors({
+  origin: true,
+  exposedHeaders: '*',
+  credentials: true,
+}));
 
 // protection
 app.use(helmet());
