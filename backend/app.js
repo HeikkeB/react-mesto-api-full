@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
-const cors = require('./middlewares/cors');
+const cors = require('cors');
 const routerAuth = require('./routes/auth');
 const router = require('./routes/index');
 const { notFoundError } = require('./utils/notFoundError');
@@ -11,6 +11,7 @@ const auth = require('./middlewares/auth');
 const { handleErrors } = require('./middlewares/handleErrors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routerCrash = require('./errors/CrashTest');
+const { corsOption } = require('./middlewares/corsOption');
 
 const { PORT = 3000 } = process.env;
 
@@ -19,7 +20,7 @@ const app = express();
 app.use(express.json());
 
 // CORS
-app.use(cors);
+app.use('*', cors(corsOption));
 
 // protection
 app.use(helmet());
