@@ -1,4 +1,4 @@
-module.exports.corsOption = {
+const options = {
   origin: [
     'http://mymesto.nomoredomains.club',
     'https://mymesto.nomoredomains.club',
@@ -12,3 +12,5 @@ module.exports.corsOption = {
   allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
   credentials: true,
 };
+
+module.exports = options;

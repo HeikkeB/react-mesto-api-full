@@ -11,7 +11,7 @@ const auth = require('./middlewares/auth');
 const { handleErrors } = require('./middlewares/handleErrors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routerCrash = require('./errors/CrashTest');
-const { corsOption } = require('./middlewares/corsOption');
+const options = require('./middlewares/corsOption');
 
 const { PORT = 3000 } = process.env;
 
@@ -20,7 +20,7 @@ const app = express();
 app.use(express.json());
 
 // CORS
-app.use('*', cors(corsOption));
+app.use(cors(options));
 
 // protection
 app.use(helmet());
