@@ -11,7 +11,6 @@ const auth = require('./middlewares/auth');
 const { handleErrors } = require('./middlewares/handleErrors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routerCrash = require('./errors/CrashTest');
-// const options = require('./middlewares/corsOption');
 
 const { PORT = 3000 } = process.env;
 
@@ -20,19 +19,7 @@ const app = express();
 app.use(express.json());
 
 // CORS
-const allowedCors = [
-  'http://mymesto.nomoredomains.club',
-  'https://mymesto.nomoredomains.club',
-  'http://api.mymesto.nomoredomains.club',
-  'https://api.mymesto.nomoredomains.club',
-  'http://localhost:3000',
-];
-const corsOptions = {
-  origin: allowedCors,
-  optionsSuccessStatus: 200,
-  credentials: true,
-};
-app.use(cors(corsOptions));
+app.use(cors());
 
 // protection
 app.use(helmet());
