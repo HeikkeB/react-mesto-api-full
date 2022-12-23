@@ -19,11 +19,19 @@ const app = express();
 app.use(express.json());
 
 // CORS
-app.use(cors({
-  origin: true,
-  exposedHeaders: '*',
+const allowedCors = [
+  'http://mymesto.nomoredomains.club/',
+  'https://mymesto.nomoredomains.club/',
+  'http://api.mymesto.nomoredomains.club/',
+  'https://api.mymesto.nomoredomains.club/',
+];
+const corsOptions = {
+  origin: allowedCors,
+  optionsSuccessStatus: 200,
   credentials: true,
-}));
+};
+
+app.use(cors(corsOptions));
 
 // protection
 app.use(helmet());

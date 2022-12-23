@@ -12,8 +12,6 @@ export const register = (email, password) => {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true',
     },
     body: JSON.stringify({ email, password }),
   }).then(handleResponse)
@@ -26,8 +24,6 @@ export const authorize = (email, password) => {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true',
     },
     body: JSON.stringify({ email, password }),
   }).then(handleResponse)
@@ -39,8 +35,6 @@ export const validateJWT = (token) => {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true',
       Authorization: `Bearer ${token}`,
     },
   }).then(handleResponse)
