@@ -17,7 +17,7 @@ class Api {
 
   _getHeaders() {
     return {
-      authorization: `Bearer ${localStorage.getItem('token')}`,
+      authorization: `Bearer ${localStorage.getItem('jwt')}`,
       'Content-Type': 'application/json',
     }
   }
@@ -107,5 +107,5 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'http://api.mymesto.nomoredomains.club',
+  baseUrl: 'http://api.myMesto.nomoredomains.club',
 })
