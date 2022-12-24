@@ -19,22 +19,23 @@ const app = express();
 app.use(express.json());
 
 // CORS
-const allowedCors = [
-  'http://mymesto.nomoredomains.club/',
-  'https://mymesto.nomoredomains.club/',
-  'http://api.mymesto.nomoredomains.club/',
-  'https://api.mymesto.nomoredomains.club/',
-  'http://localhost:3000',
-];
+// const allowedCors = [
+//   'http://mymesto.nomoredomains.club/',
+//   'https://mymesto.nomoredomains.club/',
+//   'http://api.mymesto.nomoredomains.club/',
+//   'https://api.mymesto.nomoredomains.club/',
+//   'http://localhost:3000',
+// ];
 const corsOptions = {
-  origin: allowedCors,
-  preflightContinue: false,
+  origin: true,
+  methods: ['POST', 'GET', 'PATCH', 'DELETE'],
   optionsSuccessStatus: 200,
   credentials: true,
+  maxAge: 3600,
 };
 
-app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
+app.use(cors(corsOptions));
 
 // protection
 app.use(helmet());
