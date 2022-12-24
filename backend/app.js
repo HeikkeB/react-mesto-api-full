@@ -28,11 +28,13 @@ const allowedCors = [
 ];
 const corsOptions = {
   origin: allowedCors,
+  preflightContinue: false,
   optionsSuccessStatus: 200,
   credentials: true,
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // protection
 app.use(helmet());
