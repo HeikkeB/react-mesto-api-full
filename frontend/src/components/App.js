@@ -34,13 +34,14 @@ function App() {
   const history = useNavigate()
 
   React.useEffect(() => {
-    const token = localStorage.getItem('jwt')
-    if (token) {
-      handleToken()
+    //const token = localStorage.getItem('jwt')
+    if (loggedIn) {
+      // handleToken()
+      history('/')
       Promise.all([api.getUserInfo(), api.getInitialCards()])
-        .then(([data, card]) => {
-          setCurrentUser(data)
-          setCards(card)
+      .then(([data, card]) => {
+        setCurrentUser(data)
+        setCards(card)
         })
         .catch((err) => {
           console.log(err)
@@ -144,7 +145,7 @@ function App() {
   }
 
   function handleSignOut() {
-    localStorage.removeItem('jwt')
+    // localStorage.removeItem('jwt')
     setLoggedIn(false)
   }
 
@@ -173,7 +174,7 @@ function App() {
       .authorize(email, password)
       .then((res) => {
         if (res.token) {
-          localStorage.setItem('jwt', res.token)
+          // localStorage.setItem('jwt', res.token)
           setCurrentEmail(email)
           setLoggedIn(true)
           history('/')
@@ -186,21 +187,21 @@ function App() {
       })
   }
 
-  function handleToken() {
-    if (localStorage.getItem('jwt')) {
-      const jwt = localStorage.getItem('jwt')
-      auth
-        .validateJWT(jwt)
-        .then((res) => {
-          if (res) {
-            setCurrentEmail(res.data.email)
-            setLoggedIn(true)
-            history('/')
-          }
-        })
-        .catch((err) => console.log(err))
-    }
-  }
+  // function handleToken() {
+  //   if (localStorage.getItem('jwt')) {
+  //     const jwt = localStorage.getItem('jwt')
+  //     auth
+  //       .validateJWT(jwt)
+  //       .then((res) => {
+  //         if (res) {
+  //           setCurrentEmail(res.data.email)
+  //           setLoggedIn(true)
+  //           history('/')
+  //         }
+  //       })
+  //       .catch((err) => console.log(err))
+  //   }
+  // }
 
   return (
     <currentUserContext.Provider value={currentUser}>
