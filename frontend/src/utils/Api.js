@@ -15,16 +15,25 @@ class Api {
     }
   }
 
+  _getHeaders() {
+    return {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+    }
+  }
+
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
-      headers: this._headers,
+      credentials: 'include',
+      headers: this._getHeaders(),
     }).then(this._handleResponse)
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
+      credentials: 'include',
+      headers: this._getHeaders(),
     })
       .then(this._handleResponse)
       .then((res) => {
@@ -35,14 +44,16 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers,
+      credentials: 'include',
+      headers: this._getHeaders(),
     }).then(this._handleResponse)
   }
 
   setUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      credentials: 'include',
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: name,
         about: about,
@@ -53,7 +64,8 @@ class Api {
   addNewCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      credentials: 'include',
+      headers: this._getHeaders(),
       body: JSON.stringify(data),
     }).then(this._handleResponse)
   }
@@ -61,7 +73,8 @@ class Api {
   updateAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      credentials: 'include',
+      headers: this._getHeaders(),
       body: JSON.stringify({
         avatar: data.avatar,
       }),
@@ -71,30 +84,28 @@ class Api {
   likeCard(card) {
     return fetch(`${this._baseUrl}/cards/likes/${card}`, {
       method: 'PUT',
-      headers: this._headers,
+      credentials: 'include',
+      headers: this._getHeaders(),
     }).then(this._handleResponse)
   }
 
   dislikeCard(card) {
     return fetch(`${this._baseUrl}/cards/likes/${card}`, {
       method: 'DELETE',
-      headers: this._headers,
+      credentials: 'include',
+      headers: this._getHeaders(),
     }).then(this._handleResponse)
   }
 
   changeLikeCardStatus(cardId, isNotLiked) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: isNotLiked ? 'PUT' : 'DELETE',
-      headers: this._headers,
+      credentials: 'include',
+      headers: this._getHeaders(),
     }).then(this._handleResponse)
   }
 }
 
 export const api = new Api({
   baseUrl: 'http://api.mymesto.nomoredomains.club',
-  credentials: 'include',
-  headers: {
-    //'authorization': `Bearer ${token}`,
-    'Content-Type': 'application/json',
-  },
 })
