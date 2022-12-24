@@ -26,16 +26,16 @@ app.use(express.json());
 //   'https://api.mymesto.nomoredomains.club/',
 //   'http://localhost:3000',
 // ];
-const corsOptions = {
-  origin: true,
-  methods: ['POST', 'GET', 'PATCH', 'DELETE'],
-  optionsSuccessStatus: 200,
-  credentials: true,
-  maxAge: 3600,
-};
+// const corsOptions = {
+//   origin: true,
+//   methods: ['POST', 'GET', 'PATCH', 'DELETE'],
+//   optionsSuccessStatus: 200,
+//   credentials: true,
+//   maxAge: 3600,
+// };
 
-app.options('*', cors(corsOptions));
-app.use(cors(corsOptions));
+app.options('*', cors());
+// app.use(cors(corsOptions));
 
 // protection
 app.use(helmet());
