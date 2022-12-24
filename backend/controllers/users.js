@@ -107,6 +107,7 @@ module.exports.login = (req, res, next) => {
       //   httpOnly: true,
       //   sameSite: true,
       // });
+
       res.send({ message: 'Authorization was successful!', token });
     })
     .catch((err) => {
