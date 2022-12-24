@@ -31,9 +31,8 @@ export const validateJWT = (token) => {
   return fetch(`${base_url}/users/me`, {
     credentials: 'include',
     headers: {
-      'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': token,
+      'Authorization': `Bearer ${token}`,
     },
   }).then(handleResponse)
 }
