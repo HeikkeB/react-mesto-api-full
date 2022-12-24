@@ -102,7 +102,11 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
         expiresIn: '7d',
       });
-      res.cookie('jwt', token, { expires: new Date(Date.now() + 12 * 3600000), httpOnly: true, sameSite: true });
+      // res.cookie('jwt', token, {
+      //   expires: new Date(Date.now() + 12 * 3600000),
+      //   httpOnly: true,
+      //   sameSite: true,
+      // });
       res.send({ message: 'Authorization was successful!', token });
     })
     .catch((err) => {

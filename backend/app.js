@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
-const cors = require('cors');
+// const cors = require('cors');
 const routerAuth = require('./routes/auth');
 const router = require('./routes/index');
 const { notFoundError } = require('./utils/notFoundError');
@@ -34,7 +34,7 @@ app.use(express.json());
 //   maxAge: 3600,
 // };
 
-app.options('*', cors());
+// app.options('*', cors());
 // app.use(cors(corsOptions));
 
 // protection
