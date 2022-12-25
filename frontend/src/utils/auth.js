@@ -27,12 +27,12 @@ export const authorize = (email, password) => {
   }).then(handleResponse)
 }
 
-export const validateJWT = (token) => {
-  return fetch(`${base_url}/users/me`, {
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    },
-  }).then(handleResponse)
-}
+// export const validateJWT = (token) => {
+//   return fetch(`${base_url}/users/me`, {
+//     credentials: 'include',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Authorization': `Bearer ${token}`,
+//     },
+//   }).then(handleResponse)
+// }

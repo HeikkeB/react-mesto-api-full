@@ -37,17 +37,18 @@ function App() {
     //const token = localStorage.getItem('jwt')
     if (loggedIn) {
       // handleToken()
-      history('/')
       Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([data, card]) => {
+        setLoggedIn(true)
         setCurrentUser(data)
         setCards(card)
+        history('/')
         })
         .catch((err) => {
           console.log(err)
         })
     }
-  }, [loggedIn])
+  }, [loggedIn, history])
 
   function handleDeleteConfirm(card) {
     setWithConfirm(card)
