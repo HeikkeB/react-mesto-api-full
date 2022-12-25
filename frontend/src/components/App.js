@@ -37,7 +37,7 @@ function App() {
     if (loggedIn) {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([data, card]) => {
-        setLoggedIn(true)
+        // setLoggedIn(true)
         setCurrentUser(data)
         setCards(card)
         history('/')
