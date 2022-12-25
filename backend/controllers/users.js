@@ -21,7 +21,7 @@ module.exports.createUser = (req, res, next) => {
       name, about, avatar, email, password: hash,
     }))
     .then((user) => res.status(STATUS_CREATED).send({
-      name, about, avatar, email,
+      name, about, avatar, email, _id: user._id,
     }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -63,8 +63,8 @@ module.exports.updateUser = (req, res, next) => {
     { new: true, runValidators: true },
   )
     .orFail(() => new NotFoundError('Not found'))
-    .then(() => {
-      res.send({ name, about });
+    .then((user) => {
+      res.send({ name, about, _id: user._id });
     })
     .catch((err) => {
       if ((err.name === 'ValidationError') || (err.name === 'CastError')) {
@@ -83,8 +83,8 @@ module.exports.updateAvatar = (req, res, next) => {
     { new: true, runValidators: true },
   )
     .orFail(() => new NotFoundError('Not found'))
-    .then(() => {
-      res.send({ avatar });
+    .then((user) => {
+      res.send({ avatar, _id: user._id });
     })
     .catch((err) => {
       if ((err.name === 'ValidationError') || (err.name === 'CastError')) {

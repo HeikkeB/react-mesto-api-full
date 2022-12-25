@@ -35,7 +35,7 @@ function App() {
 
   React.useEffect(() => {
     //const token = localStorage.getItem('jwt')
-    if (loggedIn) {
+    //if (loggedIn) {
       // handleToken()
       Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([data, card]) => {
@@ -47,7 +47,7 @@ function App() {
         .catch((err) => {
           console.log(err)
         })
-    }
+    //}
   }, [loggedIn, history])
 
   function handleDeleteConfirm(card) {
@@ -173,13 +173,13 @@ function App() {
   function handleAuthorize({ email, password }) {
     auth
       .authorize(email, password)
-      .then((res) => {
-        if (res.token) {
+      .then((data) => {
+        //if (res.token) {
           // localStorage.setItem('jwt', res.token)
-          setCurrentEmail(email)
+          setCurrentEmail(data.email)
           setLoggedIn(true)
           history('/')
-        }
+       //}
       })
       .catch((err) => {
         setSuccesfulReg(false)
