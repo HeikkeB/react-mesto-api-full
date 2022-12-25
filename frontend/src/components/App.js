@@ -62,7 +62,7 @@ function App() {
 
   React.useEffect(() => {
     api
-      .getInitialCard()
+      .getInitialCards()
       .then((data) => {
       setCards(data);
       history('/');
