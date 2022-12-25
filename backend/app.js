@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
+const cookieParser = require('cookie-parser');
 // const cors = require('cors');
 const routerAuth = require('./routes/auth');
 const router = require('./routes/index');
@@ -17,6 +18,9 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(express.json());
+
+// parser
+app.use(cookieParser());
 
 // CORS
 // const options = {
