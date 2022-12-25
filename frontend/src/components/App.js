@@ -173,10 +173,10 @@ function App() {
   function handleAuthorize({ email, password }) {
     auth
       .authorize(email, password)
-      .then((data) => {
+      .then(() => {
         //if (res.token) {
           // localStorage.setItem('jwt', res.token)
-          setCurrentEmail(data.email)
+          setCurrentEmail(email)
           setLoggedIn(true)
           history('/')
        //}
