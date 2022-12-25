@@ -32,43 +32,42 @@ function App() {
   const [deleteConfirm, setDeleteConfirm] = React.useState(false)
   const history = useNavigate()
 
-  // React.useEffect(() => {
-    //const token = localStorage.getItem('jwt')
-    //if (loggedIn) {
-      // handleToken()
-  //     Promise.all([api.getUserInfo(), api.getInitialCards()])
-  //     .then(([data, card]) => {
-  //       setLoggedIn(true)
-  //       setCurrentUser(data)
-  //       setCards(card)
-  //       history('/')
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   //}
-  // }, [loggedIn, history])
-
   React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
+    // const token = localStorage.getItem('jwt')
+    if (loggedIn) {
+      Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([data, card]) => {
         setLoggedIn(true)
         setCurrentUser(data)
-        history('/');
-      })
-      .catch((err) => console.log(`Error: ${err}`));
-}, [loggedIn, history]);
+        setCards(card)
+        history('/')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }, [loggedIn, history])
 
-  React.useEffect(() => {
-    api
-      .getInitialCards()
-      .then((data) => {
-      setCards(data);
-      history('/');
-      })
-      .catch((err) => console.log(`Error: ${err}`));
-  }, [loggedIn, history]);
+//   React.useEffect(() => {
+//     api
+//       .getUserInfo()
+//       .then((data) => {
+//         setLoggedIn(true)
+//         setCurrentUser(data)
+//         history('/');
+//       })
+//       .catch((err) => console.log(`Error: ${err}`));
+// }, [loggedIn, history]);
+
+//   React.useEffect(() => {
+//     api
+//       .getInitialCards()
+//       .then((data) => {
+//       setCards(data);
+//       history('/');
+//       })
+//       .catch((err) => console.log(`Error: ${err}`));
+//   }, [loggedIn, history]);
 
 
   function handleDeleteConfirm(card) {
