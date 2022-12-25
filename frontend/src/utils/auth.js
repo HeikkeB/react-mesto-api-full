@@ -2,7 +2,7 @@
 const base_url = 'http://api.myMesto.nomoredomains.club'
 
 function handleResponse(res) {
-  return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
 }
 
 export const register = (email, password) => {
