@@ -234,6 +234,7 @@ function App() {
               <Route
                 exact
                 path="/"
+                loggedIn={loggedIn}
                 element={
                   <ProtectedRoute>
                     <Main
