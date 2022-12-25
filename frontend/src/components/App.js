@@ -19,8 +19,7 @@ import { PopupWithConfirm } from './PopupWithConfirm'
 
 function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
-    React.useState(false)
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false)
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false)
   const [selectedCard, setSelectedCard] = React.useState(null)
   const [currentUser, setCurrentUser] = React.useState({})
@@ -33,22 +32,44 @@ function App() {
   const [deleteConfirm, setDeleteConfirm] = React.useState(false)
   const history = useNavigate()
 
-  React.useEffect(() => {
+  // React.useEffect(() => {
     //const token = localStorage.getItem('jwt')
     //if (loggedIn) {
       // handleToken()
-      Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([data, card]) => {
+  //     Promise.all([api.getUserInfo(), api.getInitialCards()])
+  //     .then(([data, card]) => {
+  //       setLoggedIn(true)
+  //       setCurrentUser(data)
+  //       setCards(card)
+  //       history('/')
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   //}
+  // }, [loggedIn, history])
+
+  React.useEffect(() => {
+    api
+      .getUserInfo()
+      .then((data) => {
         setLoggedIn(true)
         setCurrentUser(data)
-        setCards(card)
-        history('/')
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    //}
-  }, [loggedIn, history])
+        history('/');
+      })
+      .catch((err) => console.log(`Error: ${err}`));
+}, [loggedIn, history]);
+
+  React.useEffect(() => {
+    api
+      .getInitialCard()
+      .then((data) => {
+      setCards(data);
+      history('/');
+      })
+      .catch((err) => console.log(`Error: ${err}`));
+  }, [loggedIn, history]);
+
 
   function handleDeleteConfirm(card) {
     setWithConfirm(card)

@@ -2,9 +2,9 @@
 //const AUTH = 'ee63acbb-034f-45d3-b9ee-d63e3206b34a'
 
 class Api {
-  constructor(options) {
-    this._baseUrl = options.baseUrl
-    this._headers = options.headers
+  constructor({baseUrl, headers}) {
+    this._baseUrl = baseUrl
+    this._headers = headers
   }
 
   _handleResponse(res) {
@@ -12,13 +12,6 @@ class Api {
       return res.json()
     } else {
       return Promise.reject(`Error: ${res.status}`)
-    }
-  }
-
-  _getHeaders() {
-    return {
-      authorization: `Bearer ${localStorage.getItem('jwt')}`,
-      'Content-Type': 'application/json',
     }
   }
 
@@ -36,10 +29,6 @@ class Api {
       headers: this._headers,
     })
       .then(this._handleResponse)
-      .then((res) => {
-        this._id = res._id
-        return res
-      })
   }
 
   getInitialCards() {
