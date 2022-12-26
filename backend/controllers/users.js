@@ -56,7 +56,7 @@ module.exports.getAllUsers = (req, res, next) => {
 };
 
 module.exports.updateUser = (req, res, next) => {
-  const { name, about } = req.body;
+  const { avatar, name, about } = req.body;
   User.findByIdAndUpdate(
     req.user._id,
     { name, about },
@@ -64,7 +64,9 @@ module.exports.updateUser = (req, res, next) => {
   )
     .orFail(() => new NotFoundError('Not found'))
     .then((user) => {
-      res.send({ name, about, _id: user._id });
+      res.send({
+        avatar, name, about, _id: user._id,
+      });
     })
     .catch((err) => {
       if ((err.name === 'ValidationError') || (err.name === 'CastError')) {
@@ -76,7 +78,7 @@ module.exports.updateUser = (req, res, next) => {
 };
 
 module.exports.updateAvatar = (req, res, next) => {
-  const { avatar } = req.body;
+  const { avatar, name, about } = req.body;
   User.findByIdAndUpdate(
     req.user._id,
     { avatar },
@@ -84,7 +86,9 @@ module.exports.updateAvatar = (req, res, next) => {
   )
     .orFail(() => new NotFoundError('Not found'))
     .then((user) => {
-      res.send({ avatar, _id: user._id });
+      res.send({
+        name, about, avatar, _id: user._id,
+      });
     })
     .catch((err) => {
       if ((err.name === 'ValidationError') || (err.name === 'CastError')) {
@@ -105,8 +109,8 @@ module.exports.login = (req, res, next) => {
       res.cookie('jwt', token, {
         expires: new Date(Date.now() + 12 * 3600000),
         httpOnly: true,
-        secure: true,
         sameSite: 'None',
+        secure: true,
       });
 
       res.send({ message: 'Authorization was successful!' });
