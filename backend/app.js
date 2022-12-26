@@ -28,6 +28,7 @@ const options = {
     'http://mymesto.nomoredomains.club/',
     'https://mymesto.nomoredomains.club/',
     'http://localhost:3001',
+    'http://localhost:3000',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'origin'],
