@@ -56,7 +56,7 @@ module.exports.getAllUsers = (req, res, next) => {
 };
 
 module.exports.updateUser = (req, res, next) => {
-  const { avatar, name, about } = req.body;
+  const { name, about } = req.body;
   User.findByIdAndUpdate(
     req.user._id,
     { name, about },
@@ -65,7 +65,7 @@ module.exports.updateUser = (req, res, next) => {
     .orFail(() => new NotFoundError('Not found'))
     .then((user) => {
       res.send({
-        avatar, name, about, _id: user._id,
+        avatar: user.avatar, name, about, _id: user._id,
       });
     })
     .catch((err) => {
@@ -78,7 +78,7 @@ module.exports.updateUser = (req, res, next) => {
 };
 
 module.exports.updateAvatar = (req, res, next) => {
-  const { avatar, name, about } = req.body;
+  const { avatar } = req.body;
   User.findByIdAndUpdate(
     req.user._id,
     { avatar },
@@ -87,7 +87,7 @@ module.exports.updateAvatar = (req, res, next) => {
     .orFail(() => new NotFoundError('Not found'))
     .then((user) => {
       res.send({
-        name, about, avatar, _id: user._id,
+        name: user.name, about: user.about, avatar, _id: user._id,
       });
     })
     .catch((err) => {
@@ -121,6 +121,11 @@ module.exports.login = (req, res, next) => {
       }
       next(err);
     });
+};
+
+module.exports.signOut = (req, res, next) => {
+  res.clearCookie('jwt').send({ message: 'You are logout!' })
+    .catch(next);
 };
 
 module.exports.getUserMe = (req, res, next) => {

@@ -50,15 +50,6 @@ class Api {
     }).then(this._handleResponse)
   }
 
-  addNewCard(data) {
-    return fetch(`${this._baseUrl}/cards`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: this._headers,
-      body: JSON.stringify(data),
-    }).then(this._handleResponse)
-  }
-
   updateAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
@@ -67,6 +58,15 @@ class Api {
       body: JSON.stringify({
         avatar: data.avatar,
       }),
+    }).then(this._handleResponse)
+  }
+
+  addNewCard(data) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: this._headers,
+      body: JSON.stringify(data),
     }).then(this._handleResponse)
   }
 
@@ -96,7 +96,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://api.mymesto.nomoredomains.club',
+  baseUrl: /*'https://api.mymesto.nomoredomains.club'*/'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json'
   }

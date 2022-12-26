@@ -1,5 +1,5 @@
 //const BASE_URL = process.env.REACT_APP_BASE_URL
-const base_url = 'https://api.myMesto.nomoredomains.club'
+const base_url = /*'https://api.myMesto.nomoredomains.club'*/'http://localhost:3000'
 
 function handleResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
@@ -24,6 +24,16 @@ export const authorize = (email, password) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
+  }).then(handleResponse)
+}
+
+export const logOut = () => {
+  return fetch(`${base_url}/signout`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
   }).then(handleResponse)
 }
 

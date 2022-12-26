@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
@@ -18,26 +18,25 @@ import * as auth from '../utils/auth'
 import { PopupWithConfirm } from './PopupWithConfirm'
 
 function App() {
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false)
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false)
-  const [selectedCard, setSelectedCard] = React.useState(null)
-  const [currentUser, setCurrentUser] = React.useState({})
-  const [cards, setCards] = React.useState([])
-  const [loggedIn, setLoggedIn] = React.useState(false)
-  const [currentEmail, setCurrentEmail] = React.useState([])
-  const [infoTooltip, setInfoTooltip] = React.useState(false)
-  const [successfulReg, setSuccesfulReg] = React.useState(false)
-  const [withConfirm, setWithConfirm] = React.useState({})
-  const [deleteConfirm, setDeleteConfirm] = React.useState(false)
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false)
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false)
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false)
+  const [selectedCard, setSelectedCard] = useState(null)
+  const [currentUser, setCurrentUser] = useState({})
+  const [cards, setCards] = useState([])
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [currentEmail, setCurrentEmail] = useState([])
+  const [infoTooltip, setInfoTooltip] = useState(false)
+  const [successfulReg, setSuccesfulReg] = useState(false)
+  const [withConfirm, setWithConfirm] = useState({})
+  const [deleteConfirm, setDeleteConfirm] = useState(false)
   const history = useNavigate()
 
-  React.useEffect(() => {
-    // const token = localStorage.getItem('jwt')
+useEffect(() => {
     if (loggedIn) {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([data, card]) => {
-        // setLoggedIn(true)
+        setLoggedIn(true)
         setCurrentUser(data)
         setCards(card)
         history('/')
@@ -47,28 +46,6 @@ function App() {
         })
     }
   }, [loggedIn, history])
-
-//   React.useEffect(() => {
-//     api
-//       .getUserInfo()
-//       .then((data) => {
-//         setLoggedIn(true)
-//         setCurrentUser(data)
-//         history('/');
-//       })
-//       .catch((err) => console.log(`Error: ${err}`));
-// }, [loggedIn, history]);
-
-//   React.useEffect(() => {
-//     api
-//       .getInitialCards()
-//       .then((data) => {
-//       setCards(data);
-//       history('/');
-//       })
-//       .catch((err) => console.log(`Error: ${err}`));
-//   }, [loggedIn, history]);
-
 
   function handleDeleteConfirm(card) {
     setWithConfirm(card)
@@ -166,8 +143,12 @@ function App() {
   }
 
   function handleSignOut() {
-    // localStorage.removeItem('jwt')
-    setLoggedIn(false)
+    auth
+    .logOut()
+    .then((res) => {
+      setLoggedIn(false)
+      history('/signin')
+    })
   }
 
   function handleRegister({ email, password }) {
@@ -176,7 +157,7 @@ function App() {
       .then((res) => {
         if (res.statusCode !== 400) {
           setSuccesfulReg(true)
-          history('/sign-in')
+          history('/signin')
           setCurrentEmail(email)
         }
       })
@@ -194,8 +175,6 @@ function App() {
     auth
       .authorize(email, password)
       .then(() => {
-        //if (res.token) {
-          // localStorage.setItem('jwt', res.token)
           setCurrentEmail(email)
           setLoggedIn(true)
           history('/')

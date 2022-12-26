@@ -82,7 +82,7 @@ module.exports.removeLike = (req, res, next) => {
     { new: true },
   )
     .orFail(() => new NotFoundError('Not found'))
-    .populate(['owner', 'likes'])
+    // .populate(['owner', 'likes'])
     .then((card) => {
       res.send({ data: card });
     })
