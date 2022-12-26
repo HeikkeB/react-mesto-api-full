@@ -1,7 +1,7 @@
 const routerAuth = require('express').Router();
 const { Joi, celebrate } = require('celebrate');
 const validator = require('validator');
-const { login, createUser } = require('../controllers/users');
+const { login, createUser, signOut } = require('../controllers/users');
 const { createAccountLimiter } = require('../middlewares/limiter');
 
 const method = (value) => {
@@ -28,5 +28,7 @@ routerAuth.post('/signin', celebrate({
     password: Joi.string().required().max(36),
   }),
 }), login);
+
+routerAuth.post('/signout', signOut);
 
 module.exports = routerAuth;
