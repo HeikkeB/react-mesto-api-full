@@ -9,6 +9,7 @@ export function Register({ handleRegister }) {
   useEffect(() => {
     setEmail('')
     setPassword('')
+    setValues('')
   }, [])
 
   const handleChange = (event) => {
@@ -56,7 +57,7 @@ export function Register({ handleRegister }) {
           <button className="auth__submit-btn">Зарегистрироваться</button>
         </form>
         <Link to="/signin" className="auth__link">
-          Уже зарегистрированы? Войти
+          Уже зарегистрированы?
         </Link>
       </div>
     </div>

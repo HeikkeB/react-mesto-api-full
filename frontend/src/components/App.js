@@ -45,7 +45,23 @@ useEffect(() => {
           console.log(err)
         })
     }
-  }, [loggedIn, history])
+  }, [loggedIn])
+
+  useEffect(() => {
+    auth
+      .checkToken()
+      .then((data) => {
+        if(data) {
+          setLoggedIn(true)
+        setCurrentUser(data)
+        setCurrentEmail(data.email)
+        history('/')
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [loggedIn])
 
   function handleDeleteConfirm(card) {
     setWithConfirm(card)
@@ -102,7 +118,7 @@ useEffect(() => {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id)
+    const isLiked = card.likes.some((i) => i === currentUser._id)
 
     api
       .changeLikeCardStatus(card._id, !isLiked)
@@ -178,7 +194,6 @@ useEffect(() => {
           setCurrentEmail(email)
           setLoggedIn(true)
           history('/')
-       //}
       })
       .catch((err) => {
         setSuccesfulReg(false)

@@ -37,12 +37,11 @@ export const logOut = () => {
   }).then(handleResponse)
 }
 
-// export const validateJWT = (token) => {
-//   return fetch(`${base_url}/users/me`, {
-//     credentials: 'include',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Bearer ${token}`,
-//     },
-//   }).then(handleResponse)
-// }
+export const checkToken = () => {
+  return fetch(`${base_url}/users/me`, {
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(handleResponse)
+}

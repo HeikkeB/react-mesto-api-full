@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 export function Login({ handleAuthorize }) {
   const [email, setEmail] = useState('')
@@ -8,6 +9,7 @@ export function Login({ handleAuthorize }) {
   useEffect(() => {
     setEmail('')
     setPassword('')
+    setValues('')
   }, [])
 
   const handleChange = (event) => {
@@ -52,6 +54,9 @@ export function Login({ handleAuthorize }) {
           />
           <button className="auth__submit-btn">Войти</button>
         </form>
+        <Link to="/signup" className="auth__link">
+          Ещё не зарегистрированы?
+        </Link>
       </div>
     </div>
   )

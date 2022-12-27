@@ -93,7 +93,7 @@ class Api {
       headers: this._headers,
     }).then(this._handleResponse)
   }
-}
+ }
 
 export const api = new Api({
   baseUrl: /*'https://api.mymesto.nomoredomains.club'*/'http://localhost:3000',
