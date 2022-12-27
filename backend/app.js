@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
@@ -34,22 +35,7 @@ app.use(cookieParser());
 //   allowedHeaders: ['Content-Type', 'origin'],
 //   credentials: true,
 // };
-// const allowedCors = [
-//   'http://mymesto.nomoredomains.club/',
-//   'https://mymesto.nomoredomains.club/',
-//   'http://api.mymesto.nomoredomains.club/',
-//   'https://api.mymesto.nomoredomains.club/',
-//   'http://localhost:3000',
-// ];
-// const corsOptions = {
-//   origin: true,
-//   methods: ['POST', 'GET', 'PATCH', 'DELETE'],
-//   optionsSuccessStatus: 200,
-//   credentials: true,
-//   maxAge: 3600,
-// };
 
-// app.options('*', cors());
 // app.use('*', cors(options));
 
 // protection

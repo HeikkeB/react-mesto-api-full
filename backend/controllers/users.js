@@ -10,7 +10,7 @@ const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 const { STATUS_CREATED } = require('../utils/constants');
 
-const { JWT_SECRET = 'fc940a6da342577ec7ecc725c90a5037' } = process.env;
+const { JWT_SECRET } = process.env;
 
 module.exports.createUser = (req, res, next) => {
   const {

@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 const Unauthorized = require('../errors/Unauthorized');
 
-const { JWT_SECRET = 'fc940a6da342577ec7ecc725c90a5037' } = process.env;
+const { JWT_SECRET, NODE_ENV } = process.env;
 
 // module.exports = (req, res, next) => {
 //   const { authorization } = req.headers;
@@ -31,7 +31,7 @@ module.exports = (req, res, next) => {
     let payload;
 
     try {
-      payload = jwt.verify(token, JWT_SECRET);
+      payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'fc940a6da342577ec7ecc725c90a5037');
       req.user = payload;
       next();
     } catch (err) {

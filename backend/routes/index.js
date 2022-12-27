@@ -8,7 +8,7 @@ router.use('/cards', routerCards);
 router.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Attention! The server is now shutting down!');
-  }, 5000);
+  }, 0);
 });
 
 module.exports = router;
