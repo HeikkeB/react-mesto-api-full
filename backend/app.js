@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
-// const cors = require('cors');
+const cors = require('cors');
 const routerAuth = require('./routes/auth');
 const router = require('./routes/index');
 const { notFoundError } = require('./utils/notFoundError');
@@ -23,17 +23,17 @@ app.use(express.json());
 app.use(cookieParser());
 
 // CORS
-// const options = {
-//   origin: [
-//     'http://mymesto.nomoredomains.club/',
-//     'https://mymesto.nomoredomains.club/',
-//     'http://localhost:3001',
-//     'http://localhost:3000',
-//   ],
-//   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-//   allowedHeaders: ['Content-Type', 'origin'],
-//   credentials: true,
-// };
+const options = {
+  origin: [
+    'http://mymesto.nomoredomains.club/',
+    'https://mymesto.nomoredomains.club/',
+    'http://localhost:3001',
+    'http://localhost:3000',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'origin'],
+  credentials: true,
+};
 // const allowedCors = [
 //   'http://mymesto.nomoredomains.club/',
 //   'https://mymesto.nomoredomains.club/',
@@ -50,7 +50,7 @@ app.use(cookieParser());
 // };
 
 // app.options('*', cors());
-// app.use('*', cors(options));
+app.use('*', cors(options));
 
 // protection
 app.use(helmet());

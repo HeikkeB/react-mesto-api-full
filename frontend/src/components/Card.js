@@ -16,15 +16,15 @@ function Card(props) {
 
   const currentUser = React.useContext(currentUserContext)
 
-  const isOwn = props.card.owner._id === currentUser._id
-  const cardDeleteButtonClassName = `element__btn-delete ${
-    isOwn ? 'element__btn-delete_visible' : 'element__btn-delete_hidden'
-  }`
+  const isOwn = props.card.owner === currentUser._id
+  // const cardDeleteButtonClassName = `element__btn-delete ${
+  //   isOwn ? 'element__btn-delete_visible' : ' '
+  // }`
 
-  const isLiked = props.card.likes.some((i) => i._id === currentUser._id)
+  const isLiked = props.card.likes.some((i) => i === currentUser._id)
 
   const cardLikeButtonClassName = `element__btn-like ${
-    isLiked ? 'element__btn-like_active' : ' '
+    isLiked && 'element__btn-like_active'
   }`
 
   return (
@@ -46,13 +46,15 @@ function Card(props) {
           ></button>
           <p className="element__like-counter">{props.card.likes.length}</p>
         </div>
-
-        <button
-          className={cardDeleteButtonClassName}
+       {
+        isOwn && (<button
+          className='element__btn-delete'
           type="button"
           aria-label="Удалить"
           onClick={handleDeleteCard}
-        ></button>
+        ></button>)
+       }
+        
       </div>
     </li>
   )

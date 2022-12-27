@@ -70,16 +70,16 @@ class Api {
     }).then(this._handleResponse)
   }
 
-  likeCard(card) {
-    return fetch(`${this._baseUrl}/cards/likes/${card}`, {
+  likeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       credentials: 'include',
       headers: this._headers,
     }).then(this._handleResponse)
   }
 
-  dislikeCard(card) {
-    return fetch(`${this._baseUrl}/cards/likes/${card}`, {
+  dislikeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       credentials: 'include',
       headers: this._headers,
@@ -87,7 +87,7 @@ class Api {
   }
 
   changeLikeCardStatus(cardId, isNotLiked) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: isNotLiked ? 'PUT' : 'DELETE',
       credentials: 'include',
       headers: this._headers,
@@ -96,7 +96,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://api.mymesto.nomoredomains.club'/*'http://localhost:3000'*/,
+  baseUrl: /*'https://api.mymesto.nomoredomains.club'*/'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json'
   }

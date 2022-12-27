@@ -121,7 +121,7 @@ useEffect(() => {
       .deleteCard(card._id)
       .then(() => {
         setCards((state) =>
-          state.filter((c) => (c._id === card._id ? false : true))
+          state.filter((c) => (c._id !== card._id))
         )
         closeAllPopups()
       })
