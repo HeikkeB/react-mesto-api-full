@@ -1,5 +1,5 @@
 //const BASE_URL = process.env.REACT_APP_BASE_URL
-const base_url = /*'https://api.myMesto.nomoredomains.club'*/'http://localhost:3000'
+const base_url = 'https://api.myMesto.nomoredomains.club'/*'http://localhost:3000'*/
 
 function handleResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
