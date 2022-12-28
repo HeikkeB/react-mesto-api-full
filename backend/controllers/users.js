@@ -133,11 +133,4 @@ module.exports.getUserMe = (req, res, next) => {
     .orFail(() => new NotFoundError('User not found'))
     .then((user) => res.send(user))
     .catch(next);
-  // .catch((err) => {
-  //   if (err.name === 'CastError') {
-  //     next(new BadRequestError('Incorrect data entered!'));
-  //   } else {
-  //     next(err);
-  //   }
-  // });
 };

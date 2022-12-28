@@ -12,6 +12,7 @@ const { limiter } = require('./middlewares/limiter');
 const auth = require('./middlewares/auth');
 const { handleErrors } = require('./middlewares/handleErrors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const routerCrash = require('./errors/CrashTest');
 
 const { PORT = 3000 } = process.env;
 
@@ -43,6 +44,9 @@ app.use(limiter);
 
 // requests logger
 app.use(requestLogger);
+
+// crash test
+app.use(routerCrash);
 
 // routes
 app.use(routerAuth);
