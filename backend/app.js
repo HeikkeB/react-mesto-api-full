@@ -11,8 +11,8 @@ const { notFoundError } = require('./utils/notFoundError');
 const { limiter } = require('./middlewares/limiter');
 const auth = require('./middlewares/auth');
 const { handleErrors } = require('./middlewares/handleErrors');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
-const routerCrash = require('./errors/CrashTest');
+// const { requestLogger, errorLogger } = require('./middlewares/logger');
+// const routerCrash = require('./errors/CrashTest');
 
 const { PORT = 3000 } = process.env;
 
@@ -43,10 +43,10 @@ app.use(helmet());
 app.use(limiter);
 
 // requests logger
-app.use(requestLogger);
+// app.use(requestLogger);
 
 // crash test
-app.use(routerCrash);
+// app.use(routerCrash);
 
 // routes
 app.use(routerAuth);
@@ -54,7 +54,7 @@ app.use(auth, router);
 app.use('*', notFoundError);
 
 // errors logger
-app.use(errorLogger);
+// app.use(errorLogger);
 
 // errors validation
 app.use(errors());
