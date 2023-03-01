@@ -1,31 +1,30 @@
 # MESTO
 
-Делитесь с друзьями впечатлениями с помощью фотографий красивых мест. Проект "Место" это фото-сток с дополнительными возможностями, позволяющий поделиться с друзьями фотографиями, информацией о себе, и аватаркой.
+Share your impressions with your friends, send them photos of beautiful places. The "Place" project is a photo-stock where you can share pictures, information about yourself and avatars.
 
-## Как развернуть приложение у себя:
-* склонировать репозиторий - git clone https://github.com/HeikkeB/react-mesto-api-full
-* зайти в любой терминал (предпочтительнее будет терминал в VS Code/WebStorm)
-* в папке `backend`
-  - в терминале `npm i`
-  - в терминале `npm i -D`
-  - в терминале `npm run dev` для разработки
-  - в терминале `npm start` для релиза
-  - в терминале `npm run lint` для тестирования кода
+## The start of App:
+* git clone https://github.com/HeikkeB/react-mesto-api-full
+* in the folder `backend`
+  - in terminal `npm i`
+  - in terminal `npm i -D`
+  - in terminal `npm run dev` for development
+  - in terminal `npm start` for production
+  - in terminal `npm run lint` for testing
  
-* в папке `frontend`
-  - в терминале `npm i`
-  - в терминале `npm start` для разработки
-  - в терминале `npm build` для релиза
-  - в терминале `npm run test` для тестирования кода
+* in the folder `frontend`
+  - in terminal `npm i`
+  - in terminal `npm start` for development
+  - in terminal `npm build` for production
+  - in terminal `npm run test` for testing
 
-## Использованные технологии в проекте:
+## Used technologies:
 
 ![https://img.shields.io/badge/-Mongo%20DB-brightgreen](https://img.shields.io/badge/-Mongo%20DB-brightgreen)
 ![https://img.shields.io/badge/-Express-important](https://img.shields.io/badge/-Express-important)
 ![https://img.shields.io/badge/-React%20JS-blue](https://img.shields.io/badge/-React%20JS-blue)
 ![https://img.shields.io/badge/-Node%20JS-success](https://img.shields.io/badge/-Node%20JS-success)
 
-## Планы по доработке: 
+## Project improvement plans: 
 
-- создание "избранного"
-- возможность комментировать фотографии
+- "favorites"
+- the ability to comment on photos
